@@ -26,7 +26,7 @@ class BaseModel:
                     setattr(self, key, value)
         storage.new(self)
 
-    def __str__(self) -> str:
+    def __str__(self):
         '''Return the info of the object in a string'''
         return '[{}] ({}) {}'.format(self.__class__.__name__,
                                      self.id, self.__dict__)

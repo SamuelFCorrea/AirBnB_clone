@@ -3,6 +3,7 @@
 
 import json
 
+
 def load_class(dic):
     '''Load the class in the file'''
     from models.base_model import BaseModel
@@ -32,9 +33,9 @@ class FileStorage:
         '''Read the file and fill the __objects dictionary'''
         try:
             with open(self.__file_path, 'r') as f:
-                 loads = json.loads(f.read())
-                 for i in loads.values():
-                      load_class(i)
+                loads = json.loads(f.read())
+                for i in loads.values():
+                    load_class(i)
         finally:
             return
 
@@ -52,4 +53,5 @@ class FileStorage:
 
     def new(self, obj):
         '''Create and actualize the objects'''
-        self.__objects.update({'{}.{}'.format(obj.__class__.__name__, obj.id): obj})
+        self.__objects.update({'{}.{}'.format(obj.__class__.__name__,
+                               obj.id): obj})
