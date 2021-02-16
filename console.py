@@ -62,23 +62,24 @@ class HBNBCommand(cmd.Cmd):
     Commands:
 
         create: Creates a new instance, saves it
-                (to the JSON file) and prints the id. 
+                (to the JSON file) and prints the id.
                 Ex: $ create BaseModel
 
-        show: Prints the string representation of an instance based on the class name and id.
+        show: Prints the string representation of an instance based
+              on the class name and id.
               Ex: $ show BaseModel 1234-1234-1234
 
         destroy: Deletes an instance based on the class name and id
                  (save the change into the JSON file). Ex:
                  destroy BaseModel 1234-1234-1234
 
-        all: Prints all string representation of all instances based or not on the
-             class name.
+        all: Prints all string representation of all instances based or not
+             on the class name.
              Ex: $ all BaseModel or $ all
 
         update: Updates an instance based on the class name and id by adding or
                 updating attribute (save the change into the JSON file).
-                Ex: $ update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
+                Ex: $ update BaseModel 14-234 email "aibnb@holbertonschool.com"
 
     For more info type 'help <Command>'
     '''
@@ -172,7 +173,8 @@ Usage: $ destroy <class name> <instance id>
 
     def do_all(self, line):
         '''
-Prints all string representation of all instances based or not on the class name.
+Prints all string representation of all instances based or not
+on the class name.
 
 Usage: $ all
        $ all <class name>
