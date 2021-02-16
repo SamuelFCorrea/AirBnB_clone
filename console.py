@@ -38,12 +38,14 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_EOF(self, line):
-        '''Exit the cmd ctrl+D'''
+        '''Exit the cmd ctrl+D
+        '''
         print('')
         return True
 
     def do_quit(self, line):
-        '''Quit command to exit the program'''
+        '''Quit command to exit the program
+        '''
         return True
 
     def do_create(self, line):
