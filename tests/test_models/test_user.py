@@ -44,3 +44,60 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(a, b)
         self.assertEqual(type(b.created_at), datetime.datetime)
         self.assertEqual(type(b.updated_at), datetime.datetime)
+
+    def test_file_documentation(self):
+        '''Test the documentation'''
+        self.assertNotEqual(__import__("models").user.__doc__, None)
+
+    def test_class_documentation(self):
+        '''Test the documentation'''
+        self.assertNotEqual(__import__("models").user.User.__doc__, None)
+
+    def test_init_documentation(self):
+        '''Test the documentation'''
+        self.assertNotEqual(__import__("models").user.
+                            User.__init__.__doc__, None)
+
+    def test_str_documentation(self):
+        '''Test the documentation'''
+        self.assertNotEqual(__import__("models").user.
+                            User.__str__.__doc__, None)
+
+    def test_save_method_doc(self):
+        '''Test the documentation'''
+        self.assertNotEqual(__import__("models").user.
+                            User.save.__doc__, None)
+
+    def test_to_dict_method_doc(self):
+        '''Test the documentation'''
+        self.assertNotEqual(__import__("models").user.User.
+                            to_dict.__doc__, None)
+
+    def test_file_len_doc(self):
+        '''Test the documentation'''
+        self.assertGreater(len(__import__("models").user.__doc__), 40)
+
+    def test_class_len_doc(self):
+        '''Test the documentation'''
+        self.assertGreater(len(__import__("models").user.
+                               User.__doc__), 40)
+
+    def test_init_len_doc(self):
+        '''Test the documentation'''
+        self.assertGreater(len(__import__("models").user.
+                               User.__init__.__doc__), 40)
+
+    def test_str_len_doc(self):
+        '''Test the documentation'''
+        self.assertGreater(len(__import__("models").user.
+                               User.__str__.__doc__), 40)
+
+    def test_save_len_doc(self):
+        '''Test the documentation'''
+        self.assertGreater(len(__import__("models").user.
+                               User.save.__doc__), 40)
+
+    def test_to_dict_len_doc(self):
+        '''Test the documentation'''
+        self.assertGreater(len(__import__("models").user.
+                               User.to_dict.__doc__), 40)
