@@ -211,7 +211,13 @@ Usage: $ update <class name> <id> <attribute name> <attribute value>
                 if item:
                     if len(commands) >= 3:
                         if len(commands) >= 4:
-                            setattr(item, commands[2], commands[3])
+                            try:
+                                rt = float(commands[3])
+                                if int(rt) == rt:
+                                    rt = int(rt)
+                            except:
+                                rt = commands[3]
+                            setattr(item, commands[2], rt)
                             item.save()
                         else:
                             print('** value missing **')
