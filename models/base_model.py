@@ -43,8 +43,8 @@ Methods:
 
     def __init__(self, *args, **kargs):
         '''
-Initialize the class with the default values or the kargs ones
-'''
+        Initialize the class with the default values or the kargs ones
+        '''
 
         if kargs is None or len(kargs) < 1:
             self.id = str(uuid.uuid4())
@@ -62,29 +62,29 @@ Initialize the class with the default values or the kargs ones
 
     def __str__(self):
         '''
-Return the info of the object in a string
+        Return the info of the object in a string
 
-String representation: [<class name>] (<self.id>) <self.__dict__>
+        String representation: [<class name>] (<self.id>) <self.__dict__>
         '''
         return '[{}] ({}) {}'.format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
     def save(self):
         '''
-Update the object and actualize the 'updated_at' date.
+        Update the object and actualize the 'updated_at' date.
 
-The date in the object will be 'datetime.datetime' type
-'''
+        The date in the object will be 'datetime.datetime' type
+        '''
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def to_dict(self):
         '''
-Return a dictionary with all the object information,
-the dates change to str type
+        Return a dictionary with all the object information,
+        the dates change to str type
 
-Add a new argumment called '__class__' with the class name
-'''
+        Add a new argumment called '__class__' with the class name
+        '''
         a = {}
         a.update({'__class__': self.__class__.__name__})
         for key, arg in self.__dict__.items():
