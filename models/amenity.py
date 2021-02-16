@@ -15,7 +15,7 @@ from models.base_model import BaseModel
 
 class Amenity(BaseModel):
     '''
-A Amenity class to save a state information
+    A Amenity class to save a state information
     '''
 
     name = ''
