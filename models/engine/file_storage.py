@@ -1,5 +1,12 @@
 #!/usr/bin/python3
-'''Defines the class FileStorage'''
+'''Defines the class FileStorage.
+
+At the start of the program a new object called 'storage'
+will be created and with it all the current class operation
+will executed
+
+For more info read the fuction documentation.
+'''
 
 import json
 
@@ -21,12 +28,32 @@ def load_class(dic):
     for i in Classes.keys():
         if i == dic['__class__']:
             Classes[i](**dic)
+            break
 
 
 class FileStorage:
-    '''Class to save and read the .json file'''
+    '''
+Class to save and read the .json file
 
-    __file_path = 'storage.json'
+    File name at root directory 'file.json'.
+    No need to worrie about the .json extention the program still working
+    without it.
+
+    If the file doesn't exist it will be created
+
+    Atributtes:
+
+        __file_path: path to the file
+        __objects: will almacenate all the objects
+
+    Methods:
+        reload(): it will be called only one time to read the '__file_path' file
+                  and load all the classes
+        all(): return the '__objects' variable
+        save(): saves the '__objects' content in the '__file_path' file
+    '''
+
+    __file_path = 'file.json'
     __objects = {}
 
     def reload(self):
