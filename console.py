@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
     For more info type 'help <Command>'
     '''
 
-    prompt = '(hbnh) '
+    prompt = '(hbnb) '
 
     def emptyline(self):
         '''
