@@ -28,6 +28,7 @@ Classes = {'BaseModel': BaseModel, 'User': User,
            'Amenity': Amenity, 'Place': Place,
            'Review': Review}
 
+
 class HBNBCommand(cmd.Cmd):
     '''Command line to admin'''
 
@@ -38,19 +39,23 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_EOF(self, line):
-        '''Exit the cmd ctrl+D
+        '''
+        Exit the cmd ctrl+D
         '''
         print('')
         return True
 
     def do_quit(self, line):
-        '''Quit command to exit the program
+        '''
+        Quit command to exit the program
         '''
         return True
 
     def do_create(self, line):
-        '''Creates a new instance of BaseModel,
-saves it (to the JSON file) and prints the id'''
+        '''
+Creates a new instance of BaseModel,
+saves it (to the JSON file) and prints the id
+'''
         if not line:
             print('** class name missing **')
         elif line in Classes.keys():
@@ -61,13 +66,15 @@ saves it (to the JSON file) and prints the id'''
             print('** class doesn\'t exist **')
 
     def do_show(self, line):
-        '''Prints the string representation of an
-instance based on the class name and id'''
+        '''
+Prints the string representation of an
+instance based on the class name and id
+'''
         commands = clean(line)
         if not len(commands):
             print('** class name missing **')
             return
-        if commands[0] in self.Classes:
+        if commands[0] in Classes.keys():
             if len(commands) >= 2:
                 ret = storage.all().get('{}.{}'.format(commands[0],
                                                        commands[1]))
@@ -81,7 +88,9 @@ instance based on the class name and id'''
             print('** class doesn\'t exist **')
 
     def do_destroy(self, line):
-        '''Deletes an instance based on the class name and id'''
+        '''
+        Deletes an instance based on the class name and id
+        '''
         commands = clean(line)
         if not len(commands):
             print('** class name missing **')
@@ -102,13 +111,15 @@ instance based on the class name and id'''
             print('** class doesn\'t exist **')
 
     def do_all(self, line):
-        '''Prints the string representation of an instance
-based on the class name and id'''
+        '''
+Prints the string representation of an instance
+based on the class name and id
+'''
         ls = []
         if not line:
             for i in storage.all().values():
                 ls.append(str(i))
-        elif line in self.Classes:
+        elif line in Classes.keys:
             for i in storage.all().values():
                 if i.to_dict()['__class__'] == line:
                     ls.append(str(i))
@@ -118,12 +129,14 @@ based on the class name and id'''
         print(ls)
 
     def do_update(self, line):
-        '''Updates an instance based on the class name and
-id by adding or updating attribute'''
+        '''
+         Updates an instance based on the class name and
+         id by adding or updating attribute
+         '''
         command = clean(line)
         if not command:
             print('** class name missing **')
-        if command[0] in self.Classes:
+        if command[0] in Classes.keys():
             if command[1]:
                 item = storage.all().get('{}.{}'.format(command[0],
                                                         command[1]))

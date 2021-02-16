@@ -19,7 +19,8 @@ from models.review import Review
 
 Classes = {'BaseModel': BaseModel, 'User': User,
            'State': State, 'City': City, 'Amenity': Amenity,
-            'Place': Place, 'Review': Review}
+           'Place': Place, 'Review': Review}
+
 
 class FileStorage:
     '''
