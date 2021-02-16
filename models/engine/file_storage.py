@@ -9,27 +9,17 @@ For more info read the fuction documentation.
 '''
 
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
-
-def load_class(dic):
-    '''Load the class in the file'''
-    from models.base_model import BaseModel
-    from models.user import User
-    from models.state import State
-    from models.city import City
-    from models.amenity import Amenity
-    from models.place import Place
-    from models.review import Review
-
-    Classes = {'BaseModel': BaseModel, 'User': User,
-               'State': State, 'City': City, 'Amenity': Amenity,
-               'Place': Place, 'Review': Review}
-
-    for i in Classes.keys():
-        if i == dic['__class__']:
-            Classes[i](**dic)
-            break
-
+Classes = {'BaseModel': BaseModel, 'User': User,
+           'State': State, 'City': City, 'Amenity': Amenity,
+            'Place': Place, 'Review': Review}
 
 class FileStorage:
     '''
@@ -47,7 +37,8 @@ Class to save and read the .json file
         __objects: will almacenate all the objects
 
     Methods:
-        reload(): it will be called only one time to read the '__file_path' file
+        reload(): it will be called only one time to read the
+                  '__file_path' file
                   and load all the classes
         all(): return the '__objects' variable
         save(): saves the '__objects' content in the '__file_path' file
@@ -61,8 +52,9 @@ Class to save and read the .json file
         try:
             with open(self.__file_path, 'r') as f:
                 loads = json.loads(f.read())
-                for i in loads.values():
-                    load_class(i)
+                for value in loads.values():
+                    if value['__class__'] in Classes:
+                        self.new(Classes[value['__class__']](**value))
         finally:
             return
 
@@ -80,5 +72,6 @@ Class to save and read the .json file
 
     def new(self, obj):
         '''Create and actualize the objects'''
-        self.__objects.update({'{}.{}'.format(obj.__class__.__name__,
-                               obj.id): obj})
+        if obj:
+            self.__objects.update({'{}.{}'.format(obj.__class__.__name__,
+                                   obj.id): obj})

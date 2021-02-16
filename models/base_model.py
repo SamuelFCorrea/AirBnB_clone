@@ -18,7 +18,7 @@ Methods:
     string representation: [<class name>] (<self.id>) <self.__dict__>
 '''
 
-from models import storage
+import models
 import datetime
 import uuid
 
@@ -33,6 +33,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.updated_at = datetime.datetime.now()
             self.created_at = datetime.datetime.now()
+            models.storage.new(self)
         else:
             for key, value in kargs.items():
                 if key == '__class__':
@@ -41,7 +42,6 @@ class BaseModel:
                     setattr(self, key, datetime.datetime.fromisoformat(value))
                 else:
                     setattr(self, key, value)
-        storage.new(self)
 
     def __str__(self):
         '''Return the info of the object in a string'''
@@ -51,7 +51,7 @@ class BaseModel:
     def save(self):
         '''Like touch command only update the object'''
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         '''Return a dictionary with all the object information,

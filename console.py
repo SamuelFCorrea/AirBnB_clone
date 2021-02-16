@@ -3,7 +3,6 @@
 
 import sys
 import cmd
-from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -11,6 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+from models import storage
 
 
 def clean(line):
@@ -23,26 +23,15 @@ def clean(line):
     return commands
 
 
-def create_class(name):
-    '''Create a new class based in the name'''
-    Classes = {'BaseModel': BaseModel, 'User': User,
-               'State': State, 'City': City,
-               'Amenity': Amenity, 'Place': Place,
-               'Review': Review}
-
-    if name in Classes:
-        tmp = Classes[name]()
-        print(tmp.id)
-        tmp.save()
-
+Classes = {'BaseModel': BaseModel, 'User': User,
+           'State': State, 'City': City,
+           'Amenity': Amenity, 'Place': Place,
+           'Review': Review}
 
 class HBNBCommand(cmd.Cmd):
     '''Command line to admin'''
 
     prompt = '(hbnh) '
-    file = None
-    Classes = ['BaseModel', 'User', 'State', 'City',
-               'Amenity', 'Place', 'Review']
 
     def emptyline(self):
         '''Empty line management'''
@@ -62,8 +51,10 @@ class HBNBCommand(cmd.Cmd):
 saves it (to the JSON file) and prints the id'''
         if not line:
             print('** class name missing **')
-        elif line in self.Classes:
-            create_class(line)
+        elif line in Classes.keys():
+            tmp = Classes[line]()
+            print(tmp.id)
+            tmp.save()
         else:
             print('** class doesn\'t exist **')
 

@@ -3,7 +3,6 @@
 '''Class Review inherit from BaseModel'''
 import datetime
 from models.base_model import BaseModel
-from models import storage
 
 
 class Review(BaseModel):
