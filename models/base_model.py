@@ -85,11 +85,9 @@ class BaseModel:
 
         Add a new argumment called '__class__' with the class name
         '''
-        a = {}
-        a.update({'__class__': self.__class__.__name__})
-        for key, arg in self.__dict__.items():
-            if key in {'updated_at', 'created_at'}:
-                a.update({key: arg.isoformat()})
-            else:
-                a.update({key: arg})
-        return a
+        a = self.__dict__.copy()
+        a['__class__'] = self.__class__.__name__
+        a['created_at'] = self.created_at.isoformat()
+        a['updated_at'] = self.updated_at.isoformat()
+        a['id'] = self.id
+        return(a)
