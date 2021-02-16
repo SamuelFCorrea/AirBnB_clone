@@ -19,7 +19,7 @@ from models.base_model import BaseModel
 
 class User(BaseModel):
     '''
-Class to define the plataform users and save their info
+    Class to define the plataform users and save their info
     '''
 
     email = ''

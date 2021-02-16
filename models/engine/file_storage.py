@@ -27,17 +27,18 @@ class FileStorage:
            Class to save and read the .json file
 
               File name at root directory 'file.json'.
-              No need to worrie about the .json extention the program still working
+              No need to worrie about the .json extention
+              the program still working
               without it.
 
               If the file doesn't exist it will be created
 
-            Atributtes:
+           Atributtes:
 
               __file_path: path to the file
               __objects: will almacenate all the objects
 
-            Methods:
+           Methods:
               reload(): it will be called only one time to read the
                       '__file_path' file and load all the classes
               all(): return the '__objects' variable
