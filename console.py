@@ -1,5 +1,32 @@
 #!/usr/bin/python3
-'''A command interpreter to administrate the program'''
+'''
+A command interpreter to administrate the program.
+
+Works in interactive mode:
+
+    $ ./console.py
+    (hbnb) help
+
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  help  quit
+
+    (hbnb)
+    (hbnb)
+    (hbnb) quit
+    $
+
+And in non-interactive mode:
+
+    $ echo "help" | ./console.py
+    (hbnb)
+
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  help  quit
+    (hbnb)
+    $
+'''
 
 import sys
 import cmd
@@ -14,7 +41,7 @@ from models import storage
 
 
 def clean(line):
-    '''return the commands in a list'''
+    '''Return the commands in a list to facilitate the command read'''
     commands = []
     tmp = line.rsplit(' ')
     for i in tmp:
@@ -30,31 +57,60 @@ Classes = {'BaseModel': BaseModel, 'User': User,
 
 
 class HBNBCommand(cmd.Cmd):
-    '''Command line to admin'''
+    '''Command line to administrate the creation, update and remove the objects
+
+    Commands:
+
+        create: Creates a new instance, saves it
+                (to the JSON file) and prints the id. 
+                Ex: $ create BaseModel
+
+        show: Prints the string representation of an instance based on the class name and id.
+              Ex: $ show BaseModel 1234-1234-1234
+
+        destroy: Deletes an instance based on the class name and id
+                 (save the change into the JSON file). Ex:
+                 destroy BaseModel 1234-1234-1234
+
+        all: Prints all string representation of all instances based or not on the
+             class name.
+             Ex: $ all BaseModel or $ all
+
+        update: Updates an instance based on the class name and id by adding or
+                updating attribute (save the change into the JSON file).
+                Ex: $ update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
+
+    For more info type 'help <Command>'
+    '''
 
     prompt = '(hbnh) '
 
     def emptyline(self):
-        '''Empty line management'''
+        '''
+Empty line management
+By default an empty line execute the last command now do nothing
+        '''
         pass
 
     def do_EOF(self, line):
         '''
-        Exit the cmd ctrl+D
+Exit the cmd and print a new line when the imput is EOF
         '''
         print('')
         return True
 
     def do_quit(self, line):
         '''
-        Quit command to exit the program
+Quit command to exit the program normally
         '''
         return True
 
     def do_create(self, line):
         '''
-Creates a new instance of BaseModel,
-saves it (to the JSON file) and prints the id
+Creates a new instance of a class, saves it (to the JSON file)
+and prints the id.
+
+Usage: $ create <class name>
 '''
         if not line:
             print('** class name missing **')
@@ -67,8 +123,10 @@ saves it (to the JSON file) and prints the id
 
     def do_show(self, line):
         '''
-Prints the string representation of an
-instance based on the class name and id
+Prints the string representation of an instance based on the
+class name and id.
+
+Usage: $ show <class name> <instance id>
 '''
         commands = clean(line)
         if not len(commands):
@@ -89,7 +147,9 @@ instance based on the class name and id
 
     def do_destroy(self, line):
         '''
-        Deletes an instance based on the class name and id
+Deletes an instance based on the class name and id
+
+Usage: $ destroy <class name> <instance id>
         '''
         commands = clean(line)
         if not len(commands):
@@ -112,8 +172,10 @@ instance based on the class name and id
 
     def do_all(self, line):
         '''
-Prints the string representation of an instance
-based on the class name and id
+Prints all string representation of all instances based or not on the class name.
+
+Usage: $ all
+       $ all <class name>
 '''
         ls = []
         if not line:
@@ -130,9 +192,12 @@ based on the class name and id
 
     def do_update(self, line):
         '''
-         Updates an instance based on the class name and
-         id by adding or updating attribute
-         '''
+Updates an instance based on the class name and
+id by adding or updating attribute
+
+Usage: $ update <class name> <id> <attribute name> <attribute value>
+       $ update <class name> <id> <attribute name> "<attribute value>"
+'''
         command = clean(line)
         if not command:
             print('** class name missing **')
