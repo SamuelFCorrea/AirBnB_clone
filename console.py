@@ -88,31 +88,31 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         '''
-Empty line management
-By default an empty line execute the last command now do nothing
+        Empty line management
+        By default an empty line execute the last command now do nothing
         '''
         pass
 
     def do_EOF(self, line):
         '''
-Exit the cmd and print a new line when the imput is EOF
+        Exit the cmd and print a new line when the imput is EOF
         '''
         print('')
         return True
 
     def do_quit(self, line):
         '''
-Quit command to exit the program normally
+        Quit command to exit the program normally
         '''
         return True
 
     def do_create(self, line):
         '''
-Creates a new instance of a class, saves it (to the JSON file)
-and prints the id.
+        Creates a new instance of a class, saves it (to the JSON file)
+        and prints the id.
 
-Usage: $ create <class name>
-'''
+        Usage: $ create <class name>
+        '''
         if not line:
             print('** class name missing **')
         elif line in Classes.keys():
@@ -124,11 +124,11 @@ Usage: $ create <class name>
 
     def do_show(self, line):
         '''
-Prints the string representation of an instance based on the
-class name and id.
+        Prints the string representation of an instance based on the
+        class name and id.
 
-Usage: $ show <class name> <instance id>
-'''
+        Usage: $ show <class name> <instance id>
+        '''
         commands = clean(line)
         if not len(commands):
             print('** class name missing **')
@@ -148,9 +148,9 @@ Usage: $ show <class name> <instance id>
 
     def do_destroy(self, line):
         '''
-Deletes an instance based on the class name and id
+        Deletes an instance based on the class name and id
 
-Usage: $ destroy <class name> <instance id>
+        Usage: $ destroy <class name> <instance id>
         '''
         commands = clean(line)
         if not len(commands):
@@ -173,12 +173,12 @@ Usage: $ destroy <class name> <instance id>
 
     def do_all(self, line):
         '''
-Prints all string representation of all instances based or not
-on the class name.
+        Prints all string representation of all instances based or not
+        on the class name.
 
-Usage: $ all
-       $ all <class name>
-'''
+        Usage: $ all
+               $ all <class name>
+        '''
         ls = []
         if not line:
             for i in storage.all().values():
@@ -194,12 +194,12 @@ Usage: $ all
 
     def do_update(self, line):
         '''
-Updates an instance based on the class name and
-id by adding or updating attribute
+        Updates an instance based on the class name and
+        id by adding or updating attribute
 
-Usage: $ update <class name> <id> <attribute name> <attribute value>
-       $ update <class name> <id> <attribute name> "<attribute value>"
-'''
+        Usage: $ update <class name> <id> <attribute name> <attribute value>
+        $ update <class name> <id> <attribute name> "<attribute value>"
+        '''
         commands = clean(line)
         if not len(commands):
             print('** class name missing **')
