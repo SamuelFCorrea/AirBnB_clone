@@ -72,7 +72,11 @@ Class to save and read the .json file
             f.write(json.dumps(dic))
 
     def new(self, obj):
-        '''Create and actualize the objects'''
+        '''
+Create and actualize the objects and add a key
+
+Format: <class name>.<object id>: <dict>
+        '''
         if obj:
             self.__objects.update({'{}.{}'.format(obj.__class__.__name__,
                                    obj.id): obj})
