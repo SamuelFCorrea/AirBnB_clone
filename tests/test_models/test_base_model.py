@@ -51,23 +51,28 @@ class TestBaseModel(unittest.TestCase):
 
     def test_class_documentation(self):
         '''Test the documentation'''
-        self.assertNotEqual(__import__("models").base_model.BaseModel.__doc__, None)
+        self.assertNotEqual(__import__("models").base_model.
+                            BaseModel.__doc__, None)
 
     def test_init_documentation(self):
         '''Test the documentation'''
-        self.assertNotEqual(__import__("models").base_model.BaseModel.__init__.__doc__, None)
+        self.assertNotEqual(__import__("models").base_model.
+                            BaseModel.__init__.__doc__, None)
 
     def test_str_documentation(self):
         '''Test the documentation'''
-        self.assertNotEqual(__import__("models").base_model.BaseModel.__str__.__doc__, None)
+        self.assertNotEqual(__import__("models").base_model.
+                            BaseModel.__str__.__doc__, None)
 
     def test_save_method_doc(self):
         '''Test the documentation'''
-        self.assertNotEqual(__import__("models").base_model.BaseModel.save.__doc__, None)
+        self.assertNotEqual(__import__("models").base_model
+                            .BaseModel.save.__doc__, None)
 
     def test_to_dict_method_doc(self):
         '''Test the documentation'''
-        self.assertNotEqual(__import__("models").base_model.BaseModel.to_dict.__doc__, None)
+        self.assertNotEqual(__import__("models").base_model.BaseModel.
+                            to_dict.__doc__, None)
 
     def test_file_len_doc(self):
         '''Test the documentation'''
@@ -75,20 +80,25 @@ class TestBaseModel(unittest.TestCase):
 
     def test_class_len_doc(self):
         '''Test the documentation'''
-        self.assertGreater(len(__import__("models").base_model.BaseModel.__doc__), 40)
+        self.assertGreater(len(__import__("models").base_model.
+                               BaseModel.__doc__), 40)
 
     def test_init_len_doc(self):
         '''Test the documentation'''
-        self.assertGreater(len(__import__("models").base_model.BaseModel.__init__.__doc__), 40)
+        self.assertGreater(len(__import__("models").base_model.
+                               BaseModel.__init__.__doc__), 40)
 
     def test_str_len_doc(self):
         '''Test the documentation'''
-        self.assertGreater(len(__import__("models").base_model.BaseModel.__str__.__doc__), 40)
+        self.assertGreater(len(__import__("models").base_model.
+                               BaseModel.__str__.__doc__), 40)
 
     def test_save_len_doc(self):
         '''Test the documentation'''
-        self.assertGreater(len(__import__("models").base_model.BaseModel.save.__doc__), 40)
+        self.assertGreater(len(__import__("models").base_model.
+                               BaseModel.save.__doc__), 40)
 
     def test_to_dict_len_doc(self):
         '''Test the documentation'''
-        self.assertGreater(len(__import__("models").base_model.BaseModel.to_dict.__doc__), 40)
+        self.assertGreater(len(__import__("models").base_model
+                               .BaseModel.to_dict.__doc__), 40)
