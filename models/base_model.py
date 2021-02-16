@@ -86,10 +86,10 @@ the dates change to str type
 Add a new argumment called '__class__' with the class name
 '''
         a = {}
+        a.update({'__class__': self.__class__.__name__})
         for key, arg in self.__dict__.items():
             if key in {'updated_at', 'created_at'}:
                 a.update({key: arg.isoformat()})
             else:
                 a.update({key: arg})
-        a.update({'__class__': self.__class__.__name__})
         return a

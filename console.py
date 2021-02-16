@@ -95,7 +95,7 @@ instance based on the class name and id
         if not len(commands):
             print('** class name missing **')
             return
-        if commands[0] in self.Classes:
+        if commands[0] in Classes.keys():
             if len(commands) >= 2:
                 ret = storage.all().get('{}.{}'.format(commands[0],
                                                        commands[1]))
@@ -119,7 +119,7 @@ based on the class name and id
         if not line:
             for i in storage.all().values():
                 ls.append(str(i))
-        elif line in Classes.keys:
+        elif line in Classes.keys():
             for i in storage.all().values():
                 if i.to_dict()['__class__'] == line:
                     ls.append(str(i))
