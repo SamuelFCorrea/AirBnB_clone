@@ -9,8 +9,8 @@ from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
-from models.place import Place 
-from models.review import Review 
+from models.place import Place
+from models.review import Review
 
 
 def clean(line):
@@ -19,8 +19,9 @@ def clean(line):
     tmp = line.rsplit(' ')
     for i in tmp:
         if i:
-           commands.append(i)
+            commands.append(i)
     return commands
+
 
 def create_class(name):
     '''Create a new class based in the name'''
@@ -42,7 +43,6 @@ class HBNBCommand(cmd.Cmd):
     file = None
     Classes = ['BaseModel', 'User', 'State', 'City',
                'Amenity', 'Place', 'Review']
-
 
     def emptyline(self):
         '''Empty line management'''
@@ -75,7 +75,8 @@ instance based on the class name and id'''
             return
         if commands[0] in self.Classes:
             if len(commands) >= 2:
-                ret = storage.all().get('{}.{}'.format(commands[0], commands[1]))
+                ret = storage.all().get('{}.{}'.format(commands[0],
+                                                       commands[1]))
                 if ret:
                     print(ret)
                 else:
@@ -93,12 +94,14 @@ instance based on the class name and id'''
             return
         if commands[0] in self.Classes:
             if len(commands) >= 2:
-                ret = storage.all().get('{}.{}'.format(commands[0], commands[1]))
+                ret = storage.all().get('{}.{}'.format(commands[0],
+                                                       commands[1]))
                 if ret:
-                    storage.all().pop('{}.{}'.format(commands[0], commands[1]))
+                    storage.all().pop('{}.{}'.format(commands[0],
+                                                     commands[1]))
                     storage.save()
                 else:
-                     print('** no instance found **')
+                    print('** no instance found **')
             else:
                 print('** instance id missing **')
         else:
@@ -128,7 +131,8 @@ id by adding or updating attribute'''
             print('** class name missing **')
         if command[0] in self.Classes:
             if command[1]:
-                item = storage.all().get('{}.{}'.format(command[0], command[1]))
+                item = storage.all().get('{}.{}'.format(command[0],
+                                                        command[1]))
                 if item:
                     if command[2]:
                         if command[3]:
@@ -148,7 +152,7 @@ id by adding or updating attribute'''
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) >= 1:
+    if len(sys.argv) >= 2:
         HBNBCommand().onecmd(' '.join(sys.argv[1:]))
     else:
         HBNBCommand().cmdloop()
