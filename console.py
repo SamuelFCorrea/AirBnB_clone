@@ -200,17 +200,18 @@ id by adding or updating attribute
 Usage: $ update <class name> <id> <attribute name> <attribute value>
        $ update <class name> <id> <attribute name> "<attribute value>"
 '''
-        command = clean(line)
-        if not command:
+        commands = clean(line)
+        if not len(commands):
             print('** class name missing **')
-        if command[0] in Classes.keys():
-            if command[1]:
-                item = storage.all().get('{}.{}'.format(command[0],
-                                                        command[1]))
+            return
+        if commands[0] in Classes.keys():
+            if len(commands) >= 2:
+                item = storage.all().get('{}.{}'.format(commands[0],
+                                                        commands[1]))
                 if item:
-                    if command[2]:
-                        if command[3]:
-                            setattr(item, command[2], command[3])
+                    if len(commands) >= 3:
+                        if len(commands) >= 4:
+                            setattr(item, commands[2], commands[3])
                             item.save()
                         else:
                             print('** value missing **')
