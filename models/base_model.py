@@ -64,7 +64,7 @@ Initialize the class with the default values or the kargs ones
         '''
 Return the info of the object in a string
 
-String representation: [<class name>] (<self.id>) <self.__dict__>        
+String representation: [<class name>] (<self.id>) <self.__dict__>
         '''
         return '[{}] ({}) {}'.format(self.__class__.__name__,
                                      self.id, self.__dict__)
