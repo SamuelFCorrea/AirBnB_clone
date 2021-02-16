@@ -50,6 +50,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         '''Exit the cmd ctrl+D'''
+        print('')
         return True
 
     def do_quit(self, line):
