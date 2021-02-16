@@ -24,25 +24,24 @@ Classes = {'BaseModel': BaseModel, 'User': User,
 
 class FileStorage:
     '''
-Class to save and read the .json file
+           Class to save and read the .json file
 
-    File name at root directory 'file.json'.
-    No need to worrie about the .json extention the program still working
-    without it.
+              File name at root directory 'file.json'.
+              No need to worrie about the .json extention the program still working
+              without it.
 
-    If the file doesn't exist it will be created
+              If the file doesn't exist it will be created
 
-    Atributtes:
+            Atributtes:
 
-        __file_path: path to the file
-        __objects: will almacenate all the objects
+              __file_path: path to the file
+              __objects: will almacenate all the objects
 
-    Methods:
-        reload(): it will be called only one time to read the
-                  '__file_path' file
-                  and load all the classes
-        all(): return the '__objects' variable
-        save(): saves the '__objects' content in the '__file_path' file
+            Methods:
+              reload(): it will be called only one time to read the
+                      '__file_path' file and load all the classes
+              all(): return the '__objects' variable
+              save(): saves the '__objects' content in the '__file_path' file
     '''
 
     __file_path = 'file.json'
@@ -73,9 +72,9 @@ Class to save and read the .json file
 
     def new(self, obj):
         '''
-Create and actualize the objects and add a key
+           Create and actualize the objects and add a key
 
-Format: <class name>.<object id>: <dict>
+           Format: <class name>.<object id>: <dict>
         '''
         if obj:
             self.__objects.update({'{}.{}'.format(obj.__class__.__name__,
