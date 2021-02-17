@@ -16,7 +16,9 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    '''A state class to save a state information'''
+    '''
+    A state class to save a state information
+    '''
 
     state_id = ''
     name = ''
