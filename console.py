@@ -230,6 +230,30 @@ class HBNBCommand(cmd.Cmd):
         else:
             print('** class doesn\'t exist **')
 
+    def do_count(self, line):
+        count = 0
+        if line in Classes.keys():
+            for obj in storage.all().values():
+                if line == obj.__class__.__name__:
+                    count += 1
+        print(count)
+
+    def precmd(self, line):
+        if line and line.rsplit('.')[0] in Classes.keys():
+            end = ''
+            tmp = line.rsplit('.')
+            if len(tmp) < 2:
+                return line
+            cls = tmp[0]
+            com = tmp[1].rsplit('(')[0]
+            end = com + ' ' + cls
+            if line.rsplit('(')[1].rsplit(')')[0] == '':
+                return end
+            opt = line.rsplit('(')[1].rsplit(')')[0].rsplit(',')
+            for i in opt:
+                end = end + ' ' + i
+            return end
+        return line
 
 if __name__ == '__main__':
     import sys
